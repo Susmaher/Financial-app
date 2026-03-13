@@ -1,0 +1,16 @@
+.sign-form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    width: 560px;
+    padding: 32px;
+    align-self: center;
+    border-radius: 12px;
+    gap: 32px;
+}
+
+.sign-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

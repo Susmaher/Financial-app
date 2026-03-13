@@ -60,7 +60,7 @@ function DesktopSidebar({
                     return (
                         <NavLink
                             key={page.src}
-                            to={page.src == "Overview" ? "/" : `/${page.src}`}
+                            to={`/${page.src}`}
                             className={({ isActive }) =>
                                 `sidebar-menu-object${isActive ? " active" : ""}`
                             }

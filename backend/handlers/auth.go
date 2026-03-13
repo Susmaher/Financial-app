@@ -5,10 +5,10 @@ import (
 	"backendAPI/middleware"
 	"encoding/json"
 	"net/http"
-	"time"
 )
 
 type RegisterRequest struct {
+    Name string `json:"name"`
 	Email string `json:"email"`
 	Password string `json:"password"`
 }
@@ -26,7 +26,7 @@ func Register(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
-	if req.Email == "" || req.Password == "" {
+	if req.Email == "" || req.Password == "" || req.Name == "" {
         http.Error(w, "Email and password are required", http.StatusBadRequest)
         return
     }
@@ -42,11 +42,9 @@ func Register(w http.ResponseWriter, r *http.Request){
         return
     }
 
-
-	date := time.Now()
 	_, err = db.DB.Exec(
-        `INSERT INTO users ("email", "passwordHash", "createdAt") VALUES ($1, $2, $3)`,
-        req.Email, hash, date,
+        `INSERT INTO users ("email", "passwordHash","name","createdAt") VALUES ($1, $2, $3, NOW())`,
+        req.Email, hash, req.Name,
     )
     if err != nil {
         http.Error(w, err.Error(), http.StatusConflict)
