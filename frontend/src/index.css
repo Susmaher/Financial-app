@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Italiana&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import "./styles/sidebar.css";
+
+:root {
+    /* Primary Colors */
+    --beige-500: #98908b;
+    --beige-100: #f8f4f0;
+    --grey-900: #201f24;
+    --grey-500: #696868;
+    --grey-300: #b3b3b3;
+    --grey-100: #f2f2f2;
+    --white: #ffffff;
+
+    /* Secondary Colors */
+    --green: #277c78;
+    --yellow: #f2cdac;
+    --cyan: #82c9d7;
+    --navy: #626070;
+    --red: #c94736;
+    --purple: #826cb0;
+
+    /* Other Colors */
+    --purple-light: #af81ba;
+    --turquoise: #597c7c;
+    --brown: #93674f;
+    --magenta: #934f6f;
+    --blue: #3f82b2;
+    --navy-grey: #97a0ac;
+    --army-green: #7f9161;
+    --gold: #cab361;
+    --orange: #be6c49;
+
+    /* Spacing */
+    --space-500: 40px;
+    --space-400: 32px;
+    --space-300: 24px;
+    --space-250: 20px;
+    --space-200: 16px;
+    --space-150: 12px;
+    --space-100: 8px;
+    --space-50: 4px;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.text-preset-1 {
+    font-family: "public sans";
+    font-weight: 700px;
+    font-size: 32px;
+    line-height: 120%;
+    letter-spacing: 0px;
+}
+
+.text-preset-2 {
+    font-family: "public sans";
+    font-weight: 700px;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0px;
+}
+
+.text-preset-3 {
+    font-family: "public sans";
+    font-weight: 700px;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0px;
+}
+
+.text-preset-4 {
+    font-family: "public sans";
+    font-weight: 400px;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0px;
+}
+
+.text-preset-4-bold {
+    font-family: "public sans";
+    font-weight: 700px;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0px;
+}
+
+.text-preset-5 {
+    font-family: "public sans";
+    font-weight: 400px;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0px;
+}
+
+.text-preset-5-bold {
+    font-family: "public sans";
+    font-weight: 700px;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
