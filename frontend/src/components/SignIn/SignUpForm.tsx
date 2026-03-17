@@ -1,29 +1,28 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useState, type JSX } from "react";
-import z from "zod";
-import { signIn } from "../../api/auth";
 import { useForm } from "react-hook-form";
+import z from "zod";
+import { signUp } from "../../api/auth";
 import { AxiosError } from "axios";
-import type { signInRequest } from "../../types/auth";
 import { Field } from "../FormComponents/Field";
+import type { signUpRequest } from "../../types/auth";
 import { ErrorMessage } from "../FormComponents/ErrorMessage";
-import { useNavigate } from "react-router-dom";
 
-const signInSchema = z.object({
+const signUpSchema = z.object({
+    name: z.string().min(1, "the name field is required"),
     email: z.string().min(1, "the email field is required"),
     password: z.string().min(1, "the password field is required"),
 });
 
-type SignInFormValues = z.infer<typeof signInSchema>;
+type SignInFormValues = z.infer<typeof signUpSchema>;
 
 interface Props {
     setIsLogin: (p: boolean) => void;
 }
 
-export function SignInForm({ setIsLogin }: Props): JSX.Element {
+export function SignUpForm({ setIsLogin }: Props): JSX.Element {
     const [error, setError] = useState<string | null>(null);
-    const navigate = useNavigate();
 
     const {
         register,
@@ -31,14 +30,14 @@ export function SignInForm({ setIsLogin }: Props): JSX.Element {
         reset,
         formState: { errors },
     } = useForm<SignInFormValues>({
-        resolver: zodResolver(signInSchema),
+        resolver: zodResolver(signUpSchema),
     });
 
     const signInMutation = useMutation({
-        mutationFn: signIn,
+        mutationFn: signUp,
         onSuccess: async () => {
             reset();
-            navigate("/overview");
+            setIsLogin(true);
         },
         onError: (err) => {
             if (
@@ -55,27 +54,34 @@ export function SignInForm({ setIsLogin }: Props): JSX.Element {
         },
     });
 
-    async function onSubmit(request: signInRequest) {
+    async function onSubmit(request: signUpRequest) {
         signInMutation.mutate(request);
     }
 
     return (
         <main className="sign-form-container">
             <h1 className="text-preset-1" style={{ color: "var(--grey-900)" }}>
-                Login
+                Sign Up
             </h1>
             <form className="sign-form" onSubmit={handleSubmit(onSubmit)}>
+                <Field title="Name" type="name" {...register("name")} />
+                <ErrorMessage message={errors.name?.message} />
                 <Field title="Email" type="email" {...register("email")} />
                 <ErrorMessage message={errors.email?.message} />
                 <Field
                     title="Password"
                     type="password"
                     {...register("password")}
+                    helperText="Passwords must be at least 8 characters"
                     iconAfter="./assets/images/icon-show-password.svg"
                 />
-                <ErrorMessage message={errors.password?.message} />
+                <ErrorMessage message={errors.email?.message} />
                 {error && <ErrorMessage message={error} />}
-                <input type="submit" value="Login" className="button-primary" />
+                <input
+                    type="submit"
+                    value="Create Account"
+                    className="button-primary"
+                />
             </form>
 
             <div
@@ -89,7 +95,7 @@ export function SignInForm({ setIsLogin }: Props): JSX.Element {
                     className="text-preset-4"
                     style={{ color: "var(--grey-500)" }}
                 >
-                    Need to create an account?
+                    Already have an account?
                 </p>
                 <p
                     className="text-preset-4-bold"
@@ -98,9 +104,9 @@ export function SignInForm({ setIsLogin }: Props): JSX.Element {
                         textDecoration: "underline",
                         cursor: "pointer",
                     }}
-                    onClick={() => setIsLogin(false)}
+                    onClick={() => setIsLogin(true)}
                 >
-                    Sign Up
+                    Login
                 </p>
             </div>
         </main>

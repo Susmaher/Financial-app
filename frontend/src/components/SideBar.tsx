@@ -106,7 +106,7 @@ function SmallScreenSidebar({ mode }: { mode: string }) {
                     return (
                         <NavLink
                             key={page.src}
-                            to={page.src == "Overview" ? "/" : `/${page.src}`}
+                            to={page.src}
                             className={({ isActive }) =>
                                 `nav-menu-object-bottom${isActive ? " active" : ""}`
                             }

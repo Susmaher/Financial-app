@@ -2,15 +2,43 @@
     display: flex;
     flex-direction: column;
     background-color: var(--white);
-    width: 560px;
+    max-width: 560px;
+    width: 100%;
     padding: 32px;
     align-self: center;
     border-radius: 12px;
     gap: 32px;
+    justify-self: center;
 }
 
 .sign-form {
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.icon-before {
+    position: absolute;
+    left: 12px;
+}
+
+.icon-after {
+    position: absolute;
+    right: 12px;
+}
+
+.form-input-style {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width: 100%;
+    height: fit-content;
+    border-radius: 8px;
+    border: 1px solid var(--beige-500);
+    text-overflow: ellipsis;
 }

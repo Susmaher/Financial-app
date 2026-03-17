@@ -1,3 +1,3 @@
 export const ErrorMessage = ({ message }: { message: string | undefined }) => (
-    <p>{message}</p>
+    <p className="error-message">{message}</p>
 );

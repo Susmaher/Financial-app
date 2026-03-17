@@ -1,0 +1,36 @@
+.custom-select-container {
+    margin-top: 3rem;
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    max-width: 100%;
+}
+
+.custom-select-button {
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.675em 1em;
+    border: 1px solid #caced1;
+    border-radius: 0.25rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.custom-select-option-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border-radius: 8px;
+    background-color: var(--white);
+    list-style: none;
+    padding: 12px 20px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    max-height: 200px;
+    overflow-y: auto;
+    flex-direction: column;
+    gap: 12px;
+}
