@@ -1,10 +1,12 @@
-import type { JSX } from "react";
+import { useState, type JSX } from "react";
 import Title from "../components/Title";
 import { Field } from "../components/FormComponents/Field";
-import { DropDownField } from "../components/FormComponents/DropDownField";
 import { CustomSelect } from "../components/FormComponents/CustomSelect";
 
 export default function TransactionsPage(): JSX.Element {
+    const [category, setCategory] = useState<string>("Entertainment");
+    const [sortBy, setSortBy] = useState<string>("Latest");
+
     return (
         <main
             style={{
@@ -60,9 +62,9 @@ export default function TransactionsPage(): JSX.Element {
                     </div>
 
                     <div style={{ display: "flex", gap: "12px" }}>
-                        <DropDownField
+                        <CustomSelect
                             title="Sort by"
-                            selectElements={[
+                            options={[
                                 "Latest",
                                 "Oldest",
                                 "A to Z",
@@ -70,10 +72,12 @@ export default function TransactionsPage(): JSX.Element {
                                 "Highest",
                                 "Lowest",
                             ]}
+                            value={sortBy}
+                            onChange={setSortBy}
                         />
-                        <DropDownField
+                        <CustomSelect
                             title="Category"
-                            selectElements={[
+                            options={[
                                 "Entertainment",
                                 "Bills",
                                 "Groceries",
@@ -85,6 +89,8 @@ export default function TransactionsPage(): JSX.Element {
                                 "Shopping",
                                 "General",
                             ]}
+                            value={category}
+                            onChange={setCategory}
                         />
                     </div>
                 </div>
@@ -93,41 +99,6 @@ export default function TransactionsPage(): JSX.Element {
                     {/* <!-- Add transaction data --> */}
                     Prev Next
                 </p>
-
-                <CustomSelect
-                    options={[
-                        "Bills",
-                        "Entertainment",
-                        "Groceries",
-                        "Dining Out",
-                        "Transportation",
-                        "Personal Care",
-                        "Education",
-                        "Lifestyle",
-                        "Shopping",
-                        "General",
-                    ]}
-                />
-                <CustomSelect
-                    options={[
-                        "Green",
-                        "Yellow",
-                        "Cyan",
-                        "Navy",
-                        "Red",
-                        "Purple",
-                        "Purple-light",
-                        "Turquoise",
-                        "Brown",
-                        "Magenta",
-                        "Blue",
-                        "Navy-grey",
-                        "Army-green",
-                        "Gold",
-                        "Orange",
-                    ]}
-                    color={true}
-                />
             </div>
         </main>
     );
