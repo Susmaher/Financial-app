@@ -24,20 +24,9 @@ export function CustomSelect({
     };
 
     return (
-        <div
-            style={{
-                display: "flex",
-                gap: "8px",
-                textWrap: "nowrap",
-                alignItems: "center",
-                width: "fit-content",
-            }}
-        >
+        <div className="custom-select-wrapper">
             {title && (
-                <label
-                    className="text-preset-5-bold"
-                    style={{ color: "var(--grey-500)" }}
-                >
+                <label className="text-preset-5-bold custom-select-title">
                     {title}
                 </label>
             )}
@@ -46,7 +35,9 @@ export function CustomSelect({
                 className="custom-select-container"
             >
                 <ClickOutside onClick={() => setIsOpen(false)}>
-                    <span className="text-preset-4 custom-select-ruler">
+                    <span
+                        className={`text-preset-4 custom-select-ruler ${color && "has-color"}`}
+                    >
                         {options.reduce((a, b) =>
                             a.length > b.length ? a : b,
                         )}
@@ -54,11 +45,9 @@ export function CustomSelect({
                     <button className="custom-select-button text-preset-4">
                         {color && (
                             <span
+                                className="custom-select-color-dot"
                                 style={{
-                                    width: "16px",
-                                    height: "16px",
                                     backgroundColor: `var(--${value.toLocaleLowerCase()})`,
-                                    borderRadius: "50%",
                                 }}
                             ></span>
                         )}
@@ -67,63 +56,46 @@ export function CustomSelect({
                         <img
                             src="./assets/images/icon-caret-down.svg"
                             alt=""
-                            style={{
-                                rotate: isOpen ? "180deg" : undefined,
-                                width: "16px",
-                                height: "16px",
-                            }}
+                            className={`custom-select-caret ${
+                                isOpen ? "custom-select-caret-open" : ""
+                            }`}
                         />
                     </button>
 
                     <ul
-                        style={{
-                            display: isOpen ? "flex" : "none",
-                        }}
-                        className="custom-select-option-list"
+                        className={`custom-select-option-list ${
+                            isOpen ? "custom-select-option-list-open" : ""
+                        }`}
                     >
                         {options.map((element, id) => {
                             return (
-                                <span key={id} style={{ display: "contents" }}>
+                                <span
+                                    key={id}
+                                    className="custom-select-option-wrapper"
+                                >
                                     <li
-                                        style={{
-                                            display: isOpen ? "flex" : "none",
-                                            cursor: "pointer",
-                                            gap: "12px",
-                                            alignItems: "center",
-                                            justifyContent: "flex-start",
-                                        }}
-                                        className="text-preset-4"
+                                        className="text-preset-4 custom-select-option"
                                         onClick={() => handleSelect(element)}
                                     >
                                         {color && (
                                             <span
+                                                className="custom-select-color-dot"
                                                 style={{
-                                                    width: "16px",
-                                                    height: "16px",
                                                     backgroundColor: `var(--${element.toLocaleLowerCase()})`,
-                                                    borderRadius: "50%",
                                                 }}
                                             ></span>
                                         )}
                                         {element}
 
-                                        {element == value && color && (
+                                        {element === value && color && (
                                             <img
-                                                style={{
-                                                    marginLeft: "auto",
-                                                }}
+                                                className="custom-select-selected-icon"
                                                 src="./assets/images/icon-selected.svg"
-                                                alt=""
+                                                alt="Selected"
                                             />
                                         )}
                                     </li>
-                                    <span
-                                        style={{
-                                            width: "100%",
-                                            outline: "1px solid",
-                                            color: "var(--grey-100)",
-                                        }}
-                                    ></span>
+                                    <span className="custom-select-option-divider"></span>
                                 </span>
                             );
                         })}

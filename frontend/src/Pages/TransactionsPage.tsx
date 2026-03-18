@@ -1,11 +1,13 @@
 import { useState, type JSX } from "react";
 import Title from "../components/Title";
-import { Field } from "../components/FormComponents/Field";
+import { InputFieldTop } from "../components/TransactionComponents/InputFieldTop";
 import { CustomSelect } from "../components/FormComponents/CustomSelect";
+import { ContentTable } from "../components/TransactionComponents/ContentTable";
 
 export default function TransactionsPage(): JSX.Element {
     const [category, setCategory] = useState<string>("Entertainment");
     const [sortBy, setSortBy] = useState<string>("Latest");
+    const [color, setColor] = useState<string>("Green");
 
     return (
         <main
@@ -18,9 +20,20 @@ export default function TransactionsPage(): JSX.Element {
             }}
         >
             <Title titleName="Transactions" />
-            <h1 className="text-preset-1" style={{}}>
-                Transactions
-            </h1>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <h1 className="text-preset-1" style={{}}>
+                    Transactions
+                </h1>
+                <button
+                    className="button-primary"
+                    style={{
+                        width: "fit-content",
+                        padding: "12px",
+                    }}
+                >
+                    + New Transaction
+                </button>
+            </div>
             <div
                 style={{
                     padding: "32px",
@@ -30,75 +43,36 @@ export default function TransactionsPage(): JSX.Element {
                     backgroundColor: "var(--white)",
                 }}
             >
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <div
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "12px",
-                        }}
-                    >
-                        <button
-                            className="button-primary"
-                            style={{
-                                width: "100%",
-                                maxWidth: "75px",
-                                padding: "12px",
-                            }}
-                        >
-                            Add
-                        </button>
-                        <Field
-                            type="text"
-                            iconAfter="./assets/images/icon-search.svg"
-                            placeholder="Search transaction"
-                        />
-                    </div>
-
-                    <div style={{ display: "flex", gap: "12px" }}>
-                        <CustomSelect
-                            title="Sort by"
-                            options={[
-                                "Latest",
-                                "Oldest",
-                                "A to Z",
-                                "Z to A",
-                                "Highest",
-                                "Lowest",
-                            ]}
-                            value={sortBy}
-                            onChange={setSortBy}
-                        />
-                        <CustomSelect
-                            title="Category"
-                            options={[
-                                "Entertainment",
-                                "Bills",
-                                "Groceries",
-                                "Dining Out",
-                                "Transportation",
-                                "Personal Care",
-                                "Education",
-                                "Lifestyle",
-                                "Shopping",
-                                "General",
-                            ]}
-                            value={category}
-                            onChange={setCategory}
-                        />
-                    </div>
-                </div>
-                <p>
-                    Recipient/Sender Category Transaction Date Amount
-                    {/* <!-- Add transaction data --> */}
-                    Prev Next
-                </p>
+                <InputFieldTop
+                    categoryValue={category}
+                    setCategoryValue={setCategory}
+                    sortByValue={sortBy}
+                    setSortByValue={setSortBy}
+                />
+                <ContentTable />
+                <CustomSelect
+                    title="Category"
+                    options={[
+                        "Green",
+                        "Yellow",
+                        "Cyan",
+                        "Navy",
+                        "Red",
+                        "Purple",
+                        "Purple-light",
+                        "Turquoise",
+                        "Brown",
+                        "Magenta",
+                        "Blue",
+                        "Navy-grey",
+                        "Army-green",
+                        "Gold",
+                        "Orange",
+                    ]}
+                    value={color}
+                    onChange={setColor}
+                    color={true}
+                />
             </div>
         </main>
     );

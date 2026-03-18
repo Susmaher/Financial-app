@@ -1,0 +1,23 @@
+.input-field-top-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.input-field-top-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.input-field-top-search {
+    flex-basis: 300px;
+    flex-shrink: 1;
+    min-width: 120px;
+}
+
+.input-field-top-right {
+    display: flex;
+    gap: 12px;
+}
